@@ -1,0 +1,123 @@
+    <!-- Page Content -->
+    <div class="page-heading contact-heading header-text" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(assets/images/heading-1-1920x500.jpg);">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-content">
+                <h2>Contact Us</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div class="find-us">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-12">
+
+                <h4>Contact Us</h4>
+                <p>Have questions about our platform or need assistance with your employee registration process? We're here to help! Feel free to reach out to our dedicated support team using the contact information below</p>
+
+                <div class="container">
+                  <div class="row">
+          
+                    <div class="col-lg-4 col-md-6">
+                      <div class="service-item border shadow">
+          
+                        <div class="down-content">
+                          <h4><i class="fa fa-envelope"></i> Email</h4>
+          
+                          <h6 style="margin: 0;">hrhub&#64;gmail.com</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <div class="service-item border shadow">
+          
+          
+                        <div class="down-content">
+                          <h4><i class="fa fa-phone"></i> Phone</h4>
+          
+                          <h6 style="margin: 0;">+91 96452 96547</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                      <div class="service-item border shadow">
+          
+                        <div class="down-content">
+                          <h4><i class="fa fa-home"></i> Address</h4>
+          
+                          <h6 style="margin: 0;">Bangalore, Karnataka, India</h6>
+                        </div>
+                      </div>
+                    </div>
+                    
+          
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div class="send-message mb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="section-heading">
+                <h2>Send us a Message</h2>
+              </div>
+            </div>
+           
+            <div class="col-md-6 mb-5">
+              <img src="assets/images/contact.jpg" class="img-fluid" alt="">
+            </div>
+            
+            <div class="col-md-6">
+              <div class="contact-form">
+                <div *ngIf="showThankYouMessage" class="alert alert-success text-center">
+                  <span>Your message has been submitted successfully.</span>
+                </div>
+                <div *ngIf="errorMessage" class="alert alert-danger text-center">
+                  <span>This Email is already exists.</span>
+                </div>
+                <form id="contact" #contactForm="ngForm" (ngSubmit)="submitForm(contactForm)">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <fieldset>
+                        <input name="Name" type="text" class="form-control" id="name" placeholder="Name" ngModel required>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <fieldset>
+                        <input name="Email" type="email" class="form-control" id="email" placeholder="Email" ngModel required>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <fieldset>
+                        <input name="Subject" type="text" class="form-control" id="subject" placeholder="Subject" ngModel required>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <textarea name="Message" rows="6" class="form-control" id="message" placeholder="Your Message" ngModel required></textarea>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="filled-button">Send Message</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>

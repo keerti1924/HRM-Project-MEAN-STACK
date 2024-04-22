@@ -1,0 +1,128 @@
+<!-- <div class="" style="min-height: 90vh;">
+    <div class="container py-5">
+      <div class="row mt-5">
+        
+        <div style="max-height: 400px; overflow-y: auto;">
+          
+          <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+              <tr>
+                <th scope="col">Sr. No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">DOB</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Password</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employees">
+                <td>1</td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <img
+                        src="../../assets/images/default-user.jpg"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                        />
+                    <div class="ms-3">
+                      <p class="fw-bold mb-1">{{employee.name}}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <p class="fw-normal mb-1">Software engineer</p>
+                  <p class="text-muted mb-0">IT department</p>
+                </td>
+                <td>
+                  <span class="badge badge-success rounded-pill d-inline">Active</span>
+                </td>
+                <td>Senior</td>
+                <td>
+                  <button type="button" class="btn btn-link btn-sm btn-rounded">
+                    Edit
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+              <table class="table mt-5">
+                <thead>
+                  <tr>
+                    <th scope="col">Sr. No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">DOB</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Password</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let employee of employees">
+                    <th scope="row">1</th>
+                    <td>{{employee.name}}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{employee.department}}</td>
+                    <td>{{employee.mobile}}</td>
+                    <td>{{employee.department}}</td>
+                    <td>{{employee.department}}</td>
+                    <td>{{employee.department}}</td>
+                    <td>{{employee.department}}</td>
+                    <td>{{employee.department}}</td>
+                    <td>{{employee.department}}</td>
+                  </tr>
+
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+</div> -->
+
+<div class="sidebar">
+  <a class="active" href="/dashboard">Dashboard</a>
+  <a href="/employee">Employees</a>
+  <a href="/about-us">About</a>
+  <a href="/contact-us">Contact</a>
+  <a style="cursor: pointer;" (click)="logout()">Logout</a>
+</div>
+
+<div class="content">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <div class="card mt-5 text-center">
+          <div class="card-header">
+            Hii 👋, Admin !
+          </div>
+          <div class="card-body ">
+            <h5 class="card-title">Welcome to the HR Hub.</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12">
+             
+        <div class="card mt-5 text-center">
+          <div class="card-header">
+            Total Employees
+          </div>
+          <div class="card-body">
+            {{ employeeCount }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+

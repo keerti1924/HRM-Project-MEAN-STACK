@@ -1,0 +1,322 @@
+
+
+  <div class="sidebar ">
+    <a class="active" href="/dashboard">Dashboard</a>
+    <a href="/employee">Employees</a>
+    <a href="/about-us">About</a>
+    <a href="/contact-us">Contact</a>
+    <a style="cursor: pointer;" (click)="logout()">Logout</a>
+  </div>
+  
+  <div class="content py-4">
+  
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 mb-5 d-flex justify-content-between align-items-center">
+          <h3 class="mb-3">All Employees</h3>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addemployee">
+              <i class="fa fa-plus mr-2"></i> Add New Employee
+            </button>
+
+        </div>
+        <!-- Button trigger modal -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="addemployee" tabindex="-1" role="dialog" aria-labelledby="addemployeeTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add New Employee</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class = "container">
+                <form id="add-employee-form" (ngSubmit)="addEmployee()">
+
+                    <div class="controls">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Name *</label>
+                                    <input id="name" type="text" name="name" class="form-control" placeholder="Name" required [(ngModel)]="newEmployee.name" >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input id="email" type="email" name="email" class="form-control" placeholder="Email" required [(ngModel)]="newEmployee.email">   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="department">Department *</label>
+                                    <select name="department" id="department" class="form-control" [(ngModel)]="newEmployee.department" required>
+                                        <option value="" selected disabled>--Select Department--</option>
+                                        <option value="Manager">Manager</option>
+                                        <option value="Accounts">Accounts</option>
+                                        <option value="HR">HR</option>
+                                        <option value="Sales">Sales</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Project">Project</option>
+                                        <option value="IT Department">IT Department</option>
+                                        <option value="Customer Service">Customer Service</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="mobile">Mobile Number *</label>
+                                    <input id="mobile" type="number" name="mobile" class="form-control" placeholder="Mobile Number " required [(ngModel)]="newEmployee.mobile">   
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="gender">Gender *</label>
+                                    <select id="gender" name="gender" class="form-control" [(ngModel)]="newEmployee.gender" required >
+                                        <option value="" selected disabled>--Select Gender--</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dob">Date of Birth *</label>
+                                    <input id="dob" type="date" name="dob" class="form-control" placeholder="Date of Birth " required [(ngModel)]="newEmployee.dob">   
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="salary">Salary *</label>
+                                    <input id="salary" type="number" name="salary" class="form-control" placeholder="Salary " required [(ngModel)]="newEmployee.salary"> 
+                                </div>
+                            </div>
+
+                        </div>
+                            
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="password">Password *</label>
+                                    <input id="password" type="password" name="password" class="form-control" placeholder="Password" required [(ngModel)]="newEmployee.password"> 
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-12">
+                                
+                                <input type="submit" class="btn btn-success btn-send  pt-2 btn-block" value="Add Employee" >
+                            
+                            </div>
+                
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div *ngIf="successMessage" class="alert alert-success text-center">
+        <span>{{successMessage}}</span>
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger text-center">
+        <span>{{errorMessage}}</span>
+      </div>
+
+        <div style="max-height: 400px; overflow-y: auto;">
+          
+          <table class="table mb-0 bg-white shadow">
+            <thead class="bg-light">
+              <tr>
+                <th scope="col">Sr. No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">DOB</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Password</th>
+                    <th scope="col" colspan="2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employees; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <img
+                        src="../../assets/images/default-user.jpg"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                        />
+                    <div class="ms-3">
+                      <p class="fw-bold mb-1">{{ employee.name }}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <p class="fw-normal mb-1">{{ employee.department }}</p>
+
+                </td>
+                <td>{{ employee.mobile }}</td>
+                <td>{{ employee.gender }}</td>
+                <td>{{ employee.dob | date: 'yyyy-MM-dd' }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.salary }}</td>
+                <td>{{ employee.password }}</td>
+       
+                <td>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editemployee" (click)="editEmployee(employee)">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+                <!-- Modal -->
+                <div class="modal fade" id="editemployee" tabindex="-1" role="dialog" aria-labelledby="editemployeeTitle" aria-hidden="true" *ngIf="editMode">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit Employee</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class = "container">
+
+                          <form id="edit-employee-form" (ngSubmit)="updateEmployee()">
+
+                            <input type="hidden" [(ngModel)]="editedEmployee._id" name="id">
+
+                              <div class="controls">
+
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="name">Name *</label>
+                                              <input id="name" type="text" name="name" class="form-control" placeholder="Name" required [(ngModel)]="editedEmployee.name" value="editedEmployee.name">
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="email">Email *</label>
+                                              <input id="email" type="email" name="email" class="form-control" placeholder="Email" required [(ngModel)]="editedEmployee.email">   
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                          <div class="form-group">
+                                              <label for="department">Department *</label>
+                                              <select name="department" id="department" class="form-control" [(ngModel)]="editedEmployee.department" required>
+                                                  <option value="" selected disabled>--Select Department--</option>
+                                                  <option value="Manager">Manager</option>
+                                                  <option value="Accounts">Accounts</option>
+                                                  <option value="HR">HR</option>
+                                                  <option value="Sales">Sales</option>
+                                                  <option value="Marketing">Marketing</option>
+                                                  <option value="Project">Project</option>
+                                                  <option value="IT Department">IT Department</option>
+                                                  <option value="Customer Service">Customer Service</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="mobile">Mobile Number *</label>
+                                              <input id="mobile" type="number" name="mobile" class="form-control" placeholder="Mobile Number " required [(ngModel)]="editedEmployee.mobile">   
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="gender">Gender *</label>
+                                              <select id="gender" name="gender" class="form-control" [(ngModel)]="editedEmployee.gender" required >
+                                                  <option value="" selected disabled>--Select Gender--</option>
+                                                  <option value="Male">Male</option>
+                                                  <option value="Female">Female</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="dob">Date of Birth *</label>
+                                              <input id="dob" type="date" name="dob" class="form-control" placeholder="Date of Birth " required [(ngModel)]="editedEmployee.dob">   
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label for="salary">Salary *</label>
+                                              <input id="salary" type="number" name="salary" class="form-control" placeholder="Salary " required [(ngModel)]="editedEmployee.salary"> 
+                                          </div>
+                                      </div>
+
+                                  </div>
+                                      
+
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                          <div class="form-group">
+                                              <label for="password">Password *</label>
+                                              <input id="password" type="password" name="password" class="form-control" placeholder="Password" required [(ngModel)]="editedEmployee.password"> 
+                                          </div>
+
+                                      </div>
+
+
+                                      <div class="col-md-12">
+                                          
+                                          <input type="submit" class="btn btn-success btn-send  pt-2 btn-block" value="Save Changes" >
+                                      
+                                      </div>
+                          
+                                  </div>
+
+
+                              </div>
+                          </form>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <td>
+                  <button class="btn btn-danger" (click)="deleteEmployee(employee._id)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+
+  </div>
+
